@@ -109,4 +109,4 @@ def menu():
         print('This function is not avaliable, coming soon :P')
 
 profile_load()
-menue()
+menu()
