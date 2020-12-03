@@ -23,6 +23,7 @@ def choose_save_file():
         print(str(a)+'. '+saves[a])
     choice=int(input('Please select save file'))
     save=saves[choice]
+    menu()
 
 def reads():
     global lines
@@ -50,7 +51,7 @@ def money():
             lines[l-1]=f' money_account: {n}\n'
             break
     write(lines)
-    menue()
+    menu()
 
 def experience():
     system('cls')
@@ -63,22 +64,27 @@ def experience():
             lines[l-1]=f' experience_points: {n}\n'
             break
     write(lines)
-    menue()
+    menu()
 
 def extend():
     system('cls')
     l=0
+    f=0
     for line in lines:
         l+=1
         if 'time_upper_limit:' in line:
+            f=1
             print('Current Dilevery Time is',line[19:])
             n=int(input('Enter no. of hours to extend -> '))
             n=n*12960000
             v=int(int(line[19:])+n)
             lines[l-1]=f' time_upper_limit: {v}\n'
             break
-    write(lines)
-    menue()
+    if f==0:
+        print('TODO this first start a job')
+    else:
+        write(lines)
+    menu()
 
 def menu():
     system('cls')
@@ -109,4 +115,3 @@ def menu():
         print('This function is not avaliable, coming soon :P')
 
 profile_load()
-menu()
