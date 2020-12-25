@@ -76,8 +76,8 @@ def extend():
             f=1
             print('Current Dilevery Time is',line[19:])
             n=int(input('Enter no. of hours to extend -> '))
-            n=n*12960000
-            v=int(int(line[19:])+n)
+            n=int(n*60)
+            v=int(line[19:])+n
             lines[l-1]=f' time_upper_limit: {v}\n'
             break
     if f==0:
