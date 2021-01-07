@@ -6,9 +6,19 @@ lines=['']
 profile=['']
 user=getuser()
 save=''
+game=''
+def game_selection():
+    global game
+    print('0. American Truck Simulator\n1. Euro Truck Simulator 2')
+    choice = int(input())
+    if choice ==0 or (('a' or 'A') in choice):
+        game = 'American Truck Simulator'
+    else:
+        game = 'Euro Truck Simulator 2'
 def profile_load():
+    game_selection()
     global profile
-    profiles = listdir(rf'C:\Users\{user}\Documents\Euro Truck Simulator 2\profiles')
+    profiles = listdir(rf'C:\Users\{user}\Documents\{game}\profiles')
     for a in range(len(profiles)):
         print(str(a)+'. '+bytes.fromhex(profiles[a]).decode("ASCII"))
     choice=int(input('Please select Profile'))
@@ -18,7 +28,7 @@ def profile_load():
 
 def choose_save_file():
     global save
-    saves = listdir(rf'C:\Users\{user}\Documents\Euro Truck Simulator 2\profiles\{profile}\save')
+    saves = listdir(rf'C:\Users\{user}\Documents\{game}\profiles\{profile}\save')
     for a in range(len(saves)):
         print(str(a)+'. '+saves[a])
     choice=int(input('Please select save file'))
@@ -27,15 +37,15 @@ def choose_save_file():
 
 def reads():
     global lines
-    system(rf'SII_Decrypt.exe "C:\Users\{user}\Documents\Euro Truck Simulator 2\profiles\{profile}\save\{save}\game.sii"')
+    system(rf'SII_Decrypt.exe "C:\Users\{user}\Documents\{game}\profiles\{profile}\save\{save}\game.sii"')
     sleep(2)
-    f=open(rf'C:\Users\{user}\Documents\Euro Truck Simulator 2\profiles\{profile}\save\{save}\game.sii','r')
+    f=open(rf'C:\Users\{user}\Documents\{game}\profiles\{profile}\save\{save}\game.sii','r')
     lines=f.readlines()
     print(40*'-')
     f.close()
 
 def write(lines):
-    f=open(rf'C:\Users\{user}\Documents\Euro Truck Simulator 2\profiles\{profile}\save\{save}\game.sii','w')
+    f=open(rf'C:\Users\{user}\Documents\{game}\profiles\{profile}\save\{save}\game.sii','w')
     f.writelines(lines)
     f.close()
     print('successfully changed value')
